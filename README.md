@@ -1,7 +1,7 @@
 # roim-picx
 
 ### 预览地址
-[roim-picx](https://roim.page)
+[roim-picx](https://roim-picx-9xa.pages.dev/)
 > 该系统仅作为预览使用，每天有使用限额，请勿大量上传图片。不要使用该图床的地址作为生产使用，因为要定时删除。
 
 ### 一款基于Cloudflare的Worker、R2、Pages实现的图床应用，具有以下特点：
