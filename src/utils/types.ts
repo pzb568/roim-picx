@@ -1,6 +1,8 @@
 export type ConvertedImage = {
 	file: File
 	tmpSrc: string
+	nsfw?: boolean
+	nsfwScore?: number
 }
 
 export type UploadedImage = {
@@ -27,6 +29,8 @@ export interface ImgItem {
 	uploadedBy?: string
 	storageType?: 'R2' | 'HF'
 	tags?: string[]
+	nsfw?: boolean
+	nsfwScore?: number
 
 	// Folder support
 	isFolder?: boolean
@@ -202,4 +206,18 @@ export interface AlbumShareInfo {
 	coverImage?: string | null
 	ownerName?: string
 	createdAt?: number
+}
+
+// ============================================
+// API Key 相关类型
+// ============================================
+export interface ApiKey {
+	id: string
+	name: string
+	key_prefix: string
+	key?: string // Only present when just created
+	created_at: string
+	last_used_at: string | null
+	expires_at: string | null
+	is_active: number
 }

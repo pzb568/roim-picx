@@ -129,6 +129,8 @@ imageRoutes.post('/list', listRateLimit, auth, async (c) => {
                 uploadedBy: img.user_login,
                 uploadedAt: img.created_at ? new Date(img.created_at).getTime() : undefined,
                 storageType: img.storage_type,
+                nsfw: img.nsfw === 1,
+                nsfwScore: img.nsfw_score,
                 tags: tags
             }
         })
@@ -473,6 +475,8 @@ imageRoutes.get("/:id{.+}", async (c) => {
     const headers = new Headers()
     if (object.contentType) headers.set('content-type', object.contentType)
     headers.set('content-length', object.size.toString())
+    // Add Cache-Control for long-term caching of images
+    headers.set('Cache-Control', 'public, max-age=31536000, immutable')
 
     if (range) {
         headers.set("content-range", `bytes ${range.offset}-${range.offset + object.size - 1}/${object.size}`)

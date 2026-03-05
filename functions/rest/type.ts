@@ -16,6 +16,8 @@ export interface ImgItem {
     uploadedAt?: number
     storageType?: 'R2' | 'HF'
     tags?: string[]
+    nsfw?: boolean
+    nsfwScore?: number | null
 }
 
 export interface ImgList {
@@ -133,6 +135,21 @@ export interface DbImage {
     expires_at: string | null
     created_at: string
     storage_type: 'R2' | 'HF'
+    nsfw: number | null // 0 or 1
+    nsfw_score: number | null
+}
+
+// D1 分享记录
+export interface DbShare {
+    id: string
+    image_key: string
+    user_id: number | null
+    user_login: string | null
+    password_hash: string | null
+    max_views: number | null
+    current_views: number
+    expires_at: string | null
+    created_at: string
 }
 
 // 用户统计信息
@@ -141,6 +158,20 @@ export interface UserStats {
     totalSize: number
     totalViews: number
     recentUploads: number  // 最近7天
+}
+
+// API Key 记录
+export interface ApiKey {
+    id: string
+    user_id: number
+    user_login: string
+    key_prefix: string
+    key_hash: string
+    name: string
+    created_at: string
+    last_used_at: string | null
+    expires_at: string | null
+    is_active: number // 0 or 1
 }
 
 export default StatusCode
