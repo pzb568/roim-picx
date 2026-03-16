@@ -210,7 +210,7 @@ albumRoutes.get('/albums/:id/random', async (c) => {
             return c.json(Fail('相册中没有图片'), 404)
         }
 
-        return c.redirect(randomImage.image_url, 307)
+        return c.json(Ok(randomImage.image_url))
     } catch (e) {
         console.error('Get random album image error:', e)
         return c.json(Fail('获取随机图片失败'))
